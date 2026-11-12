@@ -1,0 +1,108 @@
+# Pages CMS 配置 —— 推荐先从这里开始（无需 OAuth，GitHub 登录即用）
+# 用法：在 https://app.pagescms.org 用 GitHub 账号登录 → 选择本仓库 → 直接编辑
+# 字段与 Decap（/admin）完全一致，两套后台可以并存。
+
+media: images/uploads
+
+content:
+  - name: articles-zh
+    label: 中文文章
+    type: collection
+    path: src/content/articles/zh
+    filename: "{fields.slug}.md"
+    view:
+      fields: [title, date, category, her_game]
+      sort: [date, desc]
+    fields:
+      - name: title
+        label: 标题
+        type: string
+        required: true
+      - name: slug
+        label: 链接名（英文小写短横线）
+        type: string
+        required: true
+        description: 例如 wnba-valuation，会成为网址 /zh/posts/wnba-valuation/ 的一部分
+      - name: date
+        label: 日期
+        type: date
+        required: true
+      - name: category
+        label: 分类
+        type: select
+        options:
+          values:
+            - owners
+            - sponsors
+            - fans
+      - name: her_game
+        label: 打 ★ Her Game 标签
+        type: boolean
+        default: false
+      - name: summary
+        label: 摘要（两句话，带一个数字）
+        type: text
+        required: true
+      - name: cover
+        label: 封面图
+        type: image
+      - name: sources
+        label: 来源
+        type: string
+        list: true
+      - name: body
+        label: 正文
+        type: rich-text
+        options:
+          media: images/uploads
+
+  - name: articles-en
+    label: English articles
+    type: collection
+    path: src/content/articles/en
+    filename: "{fields.slug}.md"
+    view:
+      fields: [title, date, category, her_game]
+      sort: [date, desc]
+    fields:
+      - name: title
+        label: Title
+        type: string
+        required: true
+      - name: slug
+        label: Slug (lower-case, hyphenated)
+        type: string
+        required: true
+        description: Keep it identical to the Chinese version so the two pages link to each other.
+      - name: date
+        label: Date
+        type: date
+        required: true
+      - name: category
+        label: Category
+        type: select
+        options:
+          values:
+            - owners
+            - sponsors
+            - fans
+      - name: her_game
+        label: "★ Her Game"
+        type: boolean
+        default: false
+      - name: summary
+        label: Summary (two sentences, one number)
+        type: text
+        required: true
+      - name: cover
+        label: Cover image
+        type: image
+      - name: sources
+        label: Sources
+        type: string
+        list: true
+      - name: body
+        label: Body
+        type: rich-text
+        options:
+          media: images/uploads

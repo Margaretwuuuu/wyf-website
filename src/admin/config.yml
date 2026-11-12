@@ -1,0 +1,57 @@
+# Decap CMS 配置（可选方案：后台在 /admin/）
+# 使用前必须做两件事：
+#   1. 把 repo 改成你自己的 GitHub 仓库，例如 "margaretwu/portfolio"
+#   2. 配好 GitHub OAuth（用内置的 Decap Turbo，或自建 OAuth 代理），
+#      否则点「Login with GitHub」会打开一个空白弹窗。
+# 如果只想最快开始，用 Pages CMS（见仓库根目录 .pages.yml），不需要 OAuth。
+
+backend:
+  name: github
+  repo: YOUR-GITHUB-USERNAME/margaret-website
+  branch: main
+  base_url: https://api.netlify.com
+
+locale: zh_Hans
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: articles_zh
+    label: 中文文章
+    label_singular: 中文文章
+    folder: src/content/articles/zh
+    create: true
+    extension: md
+    format: frontmatter
+    slug: "{{fields.slug}}"
+    summary: "{{title}} · {{date}}"
+    fields:
+      - { label: 标题, name: title, widget: string }
+      - { label: 链接名, name: slug, widget: string, hint: "英文小写短横线，例如 wnba-valuation，会成为网址的一部分" }
+      - { label: 日期, name: date, widget: datetime, date_format: YYYY-MM-DD, time_format: false, format: YYYY-MM-DD }
+      - { label: 分类, name: category, widget: select, options: [owners, sponsors, fans] }
+      - { label: "★ Her Game 标签", name: her_game, widget: boolean, default: false, required: false }
+      - { label: 摘要（两句话）, name: summary, widget: text }
+      - { label: 封面图, name: cover, widget: image, required: false }
+      - { label: 来源, name: sources, widget: list, required: false }
+      - { label: 正文, name: body, widget: markdown }
+
+  - name: articles_en
+    label: English articles
+    label_singular: English article
+    folder: src/content/articles/en
+    create: true
+    extension: md
+    format: frontmatter
+    slug: "{{fields.slug}}"
+    summary: "{{title}} · {{date}}"
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Slug, name: slug, widget: string, hint: "Lower-case, hyphenated. Must match the Chinese version to link the two." }
+      - { label: Date, name: date, widget: datetime, date_format: YYYY-MM-DD, time_format: false, format: YYYY-MM-DD }
+      - { label: Category, name: category, widget: select, options: [owners, sponsors, fans] }
+      - { label: "★ Her Game", name: her_game, widget: boolean, default: false, required: false }
+      - { label: Summary, name: summary, widget: text }
+      - { label: Cover image, name: cover, widget: image, required: false }
+      - { label: Sources, name: sources, widget: list, required: false }
+      - { label: Body, name: body, widget: markdown }

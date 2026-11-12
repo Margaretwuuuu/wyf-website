@@ -1,0 +1,4 @@
+{
+  "layout": "post-zh.njk",
+  "permalink": "/zh/posts/{{ page.fileSlug }}/index.html"
+}

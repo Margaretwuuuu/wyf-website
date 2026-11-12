@@ -1,0 +1,12 @@
+{% set c = cats[article.data.category] %}
+<article data-cats="{{ article.data.category }}{% if article.data.her_game %} her{% endif %}" style="display: flex; flex-direction: column; gap: 14px; padding: 28px; background: #FFFBF2; border: 2px solid #0F1020; border-radius: 24px">
+<div style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center">
+<span style="padding: 5px 12px; border-radius: 999px; border: 1.5px solid #0F1020; font-size: 13px; font-weight: 700; background: {{ c.color }}">{{ c[pLang] }}</span>
+{% if article.data.her_game %}<span style="padding: 5px 12px; border-radius: 999px; border: 1.5px solid #0F1020; font-size: 13px; font-weight: 700; background: #E2B6FF">★ Her Game</span>{% endif %}
+<span style="margin-left: auto; font-size: 14px; font-weight: 600; color: #4A4D63">{{ article.data.date | fmtDate(pLang) }}</span>
+</div>
+<p style="margin: 0; font-size: 13px; font-weight: 700; letter-spacing: 0.06em; {% if pLang == 'en' %}text-transform: uppercase; {% endif %}color: #4A4D63">{{ c.type[pLang] }}</p>
+<h3 style="margin: 0; font-family: {% if pLang == 'en' %}'Bricolage Grotesque'{% else %}'Noto Sans SC'{% endif %}, sans-serif; font-size: 26px; line-height: 1.2">{{ article.data.title }}</h3>
+<p style="margin: 0; color: #3B3F5C; flex-grow: 1">{{ article.data.summary }}</p>
+<a href="{{ article.url }}" style="align-self: flex-start; padding: 12px 20px; background: #0F1020; color: #FFFFFF; border-radius: 999px; text-decoration: none; font-weight: 700; font-size: 15px">{{ "Read it" if pLang == "en" else "阅读全文" }} →</a>
+</article>

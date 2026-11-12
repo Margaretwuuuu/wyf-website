@@ -1,0 +1,19 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ pageTitle or title }}</title>
+{% if description %}<meta name="description" content="{{ description }}">{% endif %}
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'><circle cx='14' cy='14' r='13' fill='none' stroke='%23D4FF3A' stroke-width='2'/><circle cx='14' cy='14' r='8' fill='none' stroke='%23FF8A65' stroke-width='2'/><circle cx='14' cy='14' r='3' fill='%23D4FF3A'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&amp;family=Inter:wght@400;500;600;700&amp;family=Noto+Sans+SC:wght@400;500;700;900&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#0F1020}a:hover{color:#3B3F5C}
+</style>
+<style>html{scroll-behavior:smooth}*{box-sizing:border-box}</style>
+{% if ogTitle %}
+<meta property="og:type" content="article">
+<meta property="og:title" content="{{ ogTitle }}">
+<meta property="og:description" content="{{ ogDescription or description }}">
+{% if ogImage %}<meta property="og:image" content="{{ ogImage }}">{% endif %}
+<meta name="twitter:card" content="summary_large_image">
+{% endif %}
